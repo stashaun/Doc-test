@@ -1,0 +1,14 @@
+The disk layout defines how the data is stored on the physical disk devices. When a new node is created, the default disk layout is assigned to the new node if the user does not specify a node-specific disk layout.
+
+Tip: When installing disk devices, it is recommended to combine two physical disks in RAID 1 to prevent data loss.
+Disk Layout
+When a node is created, it is assigned either the default disk layout, or the user specifies a node-specific disk layout. For a data node, the following four partitions are required:
+OS partition (e.g. 'd00_os')
+EXACluster OS is installed on this partition. It is an ext4 filesystem with journaling, and is AES 256 encrypted. It should be assigned at least 50 GiB of space.
+Swap partition (e.g. 'd01_swap')
+Used for swap data. It should be assigned at least 4 GiB of space.
+Data partition (e.g. 'd02_data')
+Used for database logs and coredumps. It is an ext4 filesystem with journaling. It should be assigned at least 50 GiB of space.
+EXAStorage partition (e.g. 'd03_storage')
+Used for persistent and temporary database data. It runs on one or more physical disks.
+For a physical cluster, how you set up your disk layout depends on the hardware setup you have selected - a RAID Mirror with a Software RAID, or a hardrive with a dedicated OS disk. 
